@@ -30,4 +30,11 @@ const questions = [
         answer: "//"
       }
     ];
+
+    // define quiz stats 
+    let timeLeft = 60;
+    let score = 0;
+    let highScores = [];
+
+    // put in html elements
     
