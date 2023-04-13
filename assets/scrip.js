@@ -51,3 +51,23 @@ const questions = [
     optionsElement.addEventListener("click", checkAnswer);
     scoreForm.addEventListener("submit", saveScore);
 
+    // Function to start the quiz
+function startQuiz() {
+    // Hide the start button
+    startButton.classList.add("hide");
+
+     // Show the quiz container and start the timer
+  quizContainer.classList.remove("hide");
+  setTimeLeft(timeLeft);
+  setInterval(() => {
+    timeLeft--;
+    setTimeLeft(timeLeft);
+    if (timeLeft === 0) {
+      endQuiz();
+    }
+  }, 1000);
+
+  // Show the first question
+  showQuestion();
+}
+
