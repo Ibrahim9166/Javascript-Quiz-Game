@@ -37,4 +37,17 @@ const questions = [
     let highScores = [];
 
     // put in html elements
-    
+    const startButton = document.getElementById("start-button");
+    const quizContainer = document.getElementById("quiz-container");
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const timerElement = document.getElementById("timer");
+    const scoreForm = document.getElementById("score-form");
+    const initialsInput = document.getElementById("initials-input");
+    const scoreList = document.getElementById("score-list");
+
+    //event listeners 
+    startButton.addEventListener("click", startQuiz);
+    optionsElement.addEventListener("click", checkAnswer);
+    scoreForm.addEventListener("submit", saveScore);
+
