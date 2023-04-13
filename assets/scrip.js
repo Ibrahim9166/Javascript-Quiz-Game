@@ -67,7 +67,41 @@ function startQuiz() {
     }
   }, 1000);
 
-  // Show the first question
+  // Show first question
   showQuestion();
 }
+
+// Function to show the current question
+function showQuestion() {
+    const question = questions[currentQuestionIndex];
+    questionElement.innerText = question.question;
+    optionsElement.innerHTML = "";
+    for (const option of question.options) {
+      const button = document.createElement("button");
+      button.innerText = option;
+      optionsElement.appendChild(button);
+    }
+  }
+
+  // Function to check the answer and go to the next one
+function checkAnswer(event) {
+    const selectedButton = event.target;
+    const selectedAnswer = selectedButton.innerText;
+    const correctAnswer = questions[currentQuestionIndex].answer;
+    if (selectedAnswer === correctAnswer) {
+      score++;
+    } else {
+      timeLeft -= 10;
+      if (timeLeft < 0) {
+        timeLeft = 0;
+      }
+      setTimeLeft(timeLeft);
+    }
+    currentQuestionIndex++;
+    if (currentQuestionIndex === questions.length) {
+      endQuiz();
+    } else {
+      showQuestion();
+    }
+  }
 
