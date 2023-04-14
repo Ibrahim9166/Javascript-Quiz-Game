@@ -32,6 +32,7 @@ const questions = [
     ];
 
     // define quiz stats 
+    let currentQuestionIndex = 0;
     let timeLeft = 60;
     let score = 0;
     let highScores = [];
@@ -45,6 +46,12 @@ const questions = [
     const scoreForm = document.getElementById("score-form");
     const initialsInput = document.getElementById("initials-input");
     const scoreList = document.getElementById("score-list");
+
+    
+    function setTimeLeft(time) {
+        timerElement.innerText = timeLeft;
+      }
+      
 
     //event listeners 
     startButton.addEventListener("click", startQuiz);
@@ -105,3 +112,89 @@ function checkAnswer(event) {
     }
   }
 
+  // Function to end quiz and show the score
+  function endQuiz() {
+    quizContainer.classList.add("hide");
+    scoreForm.classList.remove("hide");
+    const messageElement = document.getElementById("message");
+
+  
+    const scoreElement = document.getElementById("score");
+    if (scoreElement) {
+      scoreElement.innerText = score;
+    }
+  
+    const finalScoreElement = document.getElementById("final-score");
+    if (finalScoreElement) {
+      finalScoreElement.innerText = score;
+    }
+  
+    if (messageElement){
+      const message = `Congratulations, you got ${score} out of ${questions.length}!`;
+      messageElement.innerText = message;
+    }
+  }
+  
+  
+  // Function to save score and show high score
+  function saveScore(event) {
+    event.preventDefault();
+    const initials = initialsInput.value.trim();
+    if (initials !== "") {
+      highScores.push({
+        initials: initials,
+        score: score
+      });
+      highScores.sort((a, b) => b.score - a.score);
+      localStorage.setItem("highScores", JSON.stringify(highScores));
+      showHighScores();
+    }
+  }
+  
+  // to show the high scores
+  function showHighScores() {
+    const highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
+  
+    scoreForm.classList.add("hide");
+    scoreList.classList.remove("hide");
+    scoreList.innerHTML = "";
+  
+    for (const score of highScoresList) {
+      const li = document.createElement("li");
+      li.innerText = `${score.initials} - ${score.score}`;
+      scoreList.appendChild(li);
+    }
+  }
+  
+  function checkAnswer(event) {
+    const selectedButton = event.target;
+    const selectedAnswer = selectedButton.innerText;
+    const correctAnswer = questions[currentQuestionIndex].answer;
+    const messageElement = document.getElementById("message");
+  
+    if (selectedAnswer === correctAnswer) {
+      score++;
+      messageElement.innerText = "Correct!";
+      messageElement.classList.remove("wrong");
+    } else {
+      timeLeft -= 10;
+      if (timeLeft < 0) {
+        timeLeft = 0;
+      }
+      setTimeLeft(timeLeft);
+      messageElement.innerText = "Wrong!";
+      messageElement.classList.add("wrong");
+    }
+  
+    currentQuestionIndex++;
+    if (currentQuestionIndex === questions.length) {
+      endQuiz();
+    } else {
+      showQuestion();
+    }
+  }
+  
+  
+  
+  
+  

@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(146, 211, 236); 
+    color: black; /* dark gray text color */
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+  .hide{
+    display: none;
+  }
+  
+  /* Quiz styles */
+  
+  #quiz-container {
+    text-align: center;
+  }
+  
+  #question {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #020001; 
+  }
+  
+  #options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #options button {
+    display: block;
+    background-color: #e0f3f3; /* light blue button color */
+    border: none;
+    border-radius: 5px;
+    color: #008080; 
+    cursor: pointer;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  #options button:hover {
+    background-color: #b2d8d8; /* darker shade of light blue on hover */
+  }
+  
+  #timer {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  /* Score form styles */
+  
+  #score-form {
+    display: none;
+    text-align: center;
+  }
+  
+  #score-form label {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #008080; /* green color for the label */
+  }
+  
+  #score-form input[type="text"] {
+    border: none;
+    border-bottom: 2px solid #b2d8d8; /* light blue border color */
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding: 10px;
+    text-align: center;
+    transition: border-bottom 0.3s ease;
+    width: 200px;
+  }
+  
+  #score-form input[type="text"]:focus {
+    border-bottom: 2px solid #008080; /* green border color on focus */
+    outline: none;
+  }
+  
+  #score-form button {
+    background-color: #e0f3f3; /* light blue button color */
+    border: none;
+    border-radius: 5px;
+    color: #008080; /* green color for button text */
+    cursor: pointer;
+    font-size: 18px;
+    margin: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #score-form button:hover {
+    background-color: #b2d8d8; /* darker shade of light blue on hover */
+  }
+  
+  /* High scores styles */
+  
+  #score-list {
+    margin-top: 40px;
+  }
+  
+  #score-item {
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #e0f3f3; /* light blue background color for score items */
+    border-radius: 5px;
+  }
+  
+  #score-item span {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #008080; /* green color for the score */
+  }
+  
+  #score-item:first-child {
+    margin-top: 0;
+  }
+  
+  #message {
+    color: green; /* default color for correct answers */
+  }
+  
+  #message.wrong {
+    color: red; /* color for wrong answers */
+  }
+  
+  
+
+
+  
+  
