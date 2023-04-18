@@ -133,6 +133,8 @@ function checkAnswer(event) {
       const message = `Congratulations, you got ${score} out of ${questions.length}!`;
       messageElement.innerText = message;
     }
+
+    showHighScores();
   }
   
   
@@ -145,19 +147,33 @@ function checkAnswer(event) {
         initials: initials,
         score: score
       });
+      console.log(highScores);
       highScores.sort((a, b) => b.score - a.score);
       localStorage.setItem("highScores", JSON.stringify(highScores));
       showHighScores();
+      if (scoreList.classList.contains("hide")) {
+        showHighScores();
     }
   }
-  
+
   // to show the high scores
   function showHighScores() {
     const highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
-  
+    console.log(highScoresList)
+    highScoresList.sort((a, b) => b.score - a.score);
+    const scoreList = document.getElementById("score-list");
+
     scoreForm.classList.add("hide");
     scoreList.classList.remove("hide");
     scoreList.innerHTML = "";
+
+    const ul = document.createElement("ul");
+    highScoresList.forEach((score) => {
+        const li = document.createElement("li"); 
+        console.log(score);
+        li.innerText = `${score.initials} - ${score.score}`;
+        ul.appendChild(li);
+  });
   
     for (const score of highScoresList) {
       const li = document.createElement("li");
@@ -194,7 +210,23 @@ function checkAnswer(event) {
     }
   }
   
+  function displayHighScores() {
+    var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
   
+    highScores.sort(function(a, b) {
+      return b.score - a.score;
+    });
   
+    var scoreList = document.getElementById("score-list");
+    var scoreItems = "";
   
+    for (var i = 0; i < highScores.length; i++) {
+      scoreItems += "<li id='score-item'>" +
+        "<span>" + highScores[i].initials + "</span>" +
+        "<span>" + highScores[i].score + "</span>" +
+        "</li>";
+    }
   
+    scoreList.querySelector("ul").innerHTML = scoreItems;
+  }
+}

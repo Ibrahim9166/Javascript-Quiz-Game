@@ -108,7 +108,7 @@ body {
   /* High scores styles */
   
   #score-list {
-    margin-top: 40px;
+    margin-top: 0px;
   }
   
   #score-item {
